@@ -1,0 +1,3 @@
+package des
+
+class Wire {}
