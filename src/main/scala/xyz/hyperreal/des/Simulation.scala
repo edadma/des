@@ -3,7 +3,7 @@ package xyz.hyperreal.des
 object Simulation {
 
   private var agenda: List[Event] = Nil
-  private var curtime = 0
+  private[des] var curtime = 0
 
   private[des] def insert(time: Int, action: => Unit) = {
     val item = Event(time, () => action)
@@ -16,8 +16,6 @@ object Simulation {
 
     insert(agenda)
   }
-
-  def currentTime: Int = curtime
 
   @scala.annotation.tailrec
   private def loop(): Unit =

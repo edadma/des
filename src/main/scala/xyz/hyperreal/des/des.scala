@@ -7,6 +7,11 @@ package object des {
   case class Event(time: Int, action: Action)
 
   def afterDelay(delay: Int)(action: => Unit): Unit =
-    Simulation.insert(Simulation.currentTime + delay, () => action)
+    Simulation.insert(currentTime + delay, () => action)
+
+  def currentTime: Int = Simulation.curtime
+
+  def probe(name: String, wire: Wire): Unit =
+    wire addAction (() => println(s"$name $currentTime value = ${wire getSignal}"))
 
 }
