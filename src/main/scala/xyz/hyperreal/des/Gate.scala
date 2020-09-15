@@ -1,12 +1,17 @@
-package des
+package xyz.hyperreal.des
 
 object Gate {
 
+  val NOT_GATE_DELAY = 5
+  val AND_GATE_DELAY = 5
+
   def or(a: Wire, b: Wire, out: Wire): Unit = {}
 
-  def and(a: Wire, b: Wire, out: Wire): Unit = {}
+  def and(a: Wire, b: Wire, out: Wire): Unit =
+    a addAction (() => afterDelay(AND_GATE_DELAY) { out setSignal a.getSignal && b.getSignal })
 
-  def not(a: Wire, out: Wire): Unit = {}
+  def not(a: Wire, out: Wire): Unit =
+    a addAction (() => afterDelay(NOT_GATE_DELAY) { out setSignal !a.getSignal })
 
   def nand(a: Wire, b: Wire, out: Wire): Unit = {
     val o = new Wire

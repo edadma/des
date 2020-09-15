@@ -1,3 +1,3 @@
-package xyz.hyperreal.name
+package xyz.hyperreal.des
 
 object Main extends App {}
